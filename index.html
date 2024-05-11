@@ -43,7 +43,7 @@
             }
 
         button {
-            border: 0;
+            border: 5px;
             border-radius: 5px;
             margin-top: 50px;
             height: 60px;
@@ -67,7 +67,31 @@
         <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
         <p>Привет. А давай-ка, дружище, создадим что-то интересное!</p>
         <button id="create_event">Создать новое</button>
+
+        <button onclick="sendData()">Send Data</button>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        function sendData() {
+                var data = { key: 'value' };  // Ваши данные
+                console.log(data);
+                fetch('http://localhost:5000/send_data', {  // Замените на ваш порт
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+    </script>
 </body>
 </html>
