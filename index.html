@@ -59,25 +59,74 @@
             background: var(--tg-theme-secondary-bg-color);
             }
 
+        #form {
+            display: none;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            outline: none;
+            margin: 10px 5%;
+            padding: 15px 10px;
+            font-size: 14px;
+            border: 2px solid silver;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border-color: #db5d5d;
+        }
+
     </style>
 </head>
 <body>
-    <div id="main">
+    <div id="create_event_main">
         <h1>Создание события</h1>
         <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
         <p>Привет. А давай-ка, дружище, создадим что-то интересное!</p>
-        <button id="create_event">Создать новое</button>
+        <button id="button_create_event">Создать новое</button>
 
         <button onclick="sendData()">Send Data</button>
     </div>
+    <form id="form_create_event">
+        <input type="text" placeholder="Название события" id="in_event_name">
+        <input type="text" placeholder="Вид спорта" id="in_event_sport">
+        <input type="text" placeholder="Тип события" id="in_event_type">
+        <input type="text" placeholder="Тип команд" id="in_event_teams_type">
+        <input type="text" placeholder="Число команд" id="in_event_teams_num">
+        <button id="button_event_save">Создать</button>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
+        let create_event = document.getElementById("button_create_event");
+        let save_event = document.getElementById("button_event_save");
         tg.expand();
+        create_event.addEventListener("click", () => {
+            document.getElementById("create_event_main").style.display = "none";
+            document.getElementById("form_create_event").style.display = "block";
+        });
+
+        save_event.addEventListener("click", () => {
+            let event_name = document.getElementById("in_event_name").value;
+            let event_sport = document.getElementById("in_event_sport").value;
+            let event_type = document.getElementById("in_event_type").value;
+            let event_teams_type = document.getElementById("in_event_teams_type").value;
+            let event_teams_num = document.getElementById("in_event_teams_num").value;
+
+            let data_event = {
+                event_name: event_name,
+                event_sport: event_sport,
+                event_type: event_type,
+                event_teams_type: event_teams_type,
+                event_teams_num: event_teams_num
+            }
+            tg.sendData(JSON.stringify(data_event))
+
         function sendData() {
                 var data = { key: 'value' };  // Ваши данные
                 console.log(data);
-                fetch('https://185.209.22.24:443/send_data', {  // Замените на ваш порт
+                fetch('http://185.209.22.24:5000/send_data', {  // Замените на ваш порт
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
