@@ -113,7 +113,7 @@
             let event_type = document.getElementById("in_event_type").value;
             let event_teams_type = document.getElementById("in_event_teams_type").value;
             let event_teams_num = document.getElementById("in_event_teams_num").value;
-
+        
             let data_event = {
                 event_name: event_name,
                 event_sport: event_sport,
@@ -122,6 +122,8 @@
                 event_teams_num: event_teams_num
             }
             tg.sendData(JSON.stringify(data_event))
+            tg.close()
+        });
 
         function sendData() {
                 var data = { key: 'value' };  // Ваши данные
