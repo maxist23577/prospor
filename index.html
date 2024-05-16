@@ -152,8 +152,60 @@
             border-color: #db5d5d;
         }
 
+        .input-container {
+        margin-top: 20px;
+        text-align: center;
+        position: relative; /* Необходимо для псевдоэлемента */
+        }
+
+        .input-container::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px; /* Тонкая линия */
+            background-color: #3d3c3c; /* Цвет линии */
+            bottom: -10px; /* Расположение под блоком */
+            left: 0;
+            right: 0;
+        }
+
+        .group-container {
+        margin-bottom: 10px;
+        }
+
+        .input-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .input-group input[type="text"] {
+        width: 60px;
+        text-align: center;
+        }
+
+        .input-group button {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        font-size: 18px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        .input-group button:hover {
+        background-color: #199415;
+        }
+
+        .hidden {
+        display: none;
+        }
+
     </style>
 </head>
+
 <body>
     <div id="create_event_main">
         <h1>Создание события</h1>
@@ -217,9 +269,29 @@
             </div>
         </div>
 
-        <input type="text" placeholder="Число команд" id="in_event_teams_num">
+        <div class="input-container">
+            <h3>Число команд/групп</h3>
+            <div class="group-container">
+                <label for="team-num">Команды</label>
+                <div class="input-group">
+                    <button type="button" id="btn-minus">-</button>
+                    <input type="text" id="team-num" value="0">
+                    <button type="button" id="btn-plus">+</button>
+                </div>
+            </div>
+            <div class="group-container hidden" id="group-container">
+                <label for="group-num">Группы</label>
+                <div class="input-group">
+                    <button type="button" id="btn-minus-group">-</button>
+                    <input type="text" id="group-num" value="0">
+                    <button type="button" id="btn-plus-group">+</button>
+                </div>
+            </div>
+        </div>
+
         <button id="button_event_save">Создать</button>
     </form>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
@@ -267,6 +339,63 @@
                     console.error('Error:', error);
                 });
             }
+
+        // Функция для обработки изменений типа события
+        function handleEventTypeChange(eventType) {
+            const groupContainer = document.getElementById('group-container');
+            if (eventType === 'Чемпионат') {
+                groupContainer.classList.remove('hidden');
+            } else {
+                groupContainer.classList.add('hidden');
+            }
+        }
+
+        // Обработчик изменений типа события
+        document.querySelectorAll('input[name="event_type"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                handleEventTypeChange(this.value);
+            });
+        });
+
+        // Функция для обработки изменения числа команд
+        function handleTeamNumChange(operation) {
+            const teamNumInput = document.getElementById('team-num');
+            let currentValue = parseInt(teamNumInput.value);
+            if (operation === 'plus') {
+                teamNumInput.value = currentValue + 1;
+            } else if (operation === 'minus' && currentValue > 0) {
+                teamNumInput.value = currentValue - 1;
+            }
+        }
+
+        // Обработчики для кнопок изменения числа команд
+        document.getElementById('btn-plus').addEventListener('click', function() {
+            handleTeamNumChange('plus');
+        });
+
+        document.getElementById('btn-minus').addEventListener('click', function() {
+            handleTeamNumChange('minus');
+        });
+
+        // Функция для обработки изменения числа групп
+        function handleGroupNumChange(operation) {
+            const groupNumInput = document.getElementById('group-num');
+            let currentValue = parseInt(groupNumInput.value);
+            if (operation === 'plus') {
+                groupNumInput.value = currentValue + 1;
+            } else if (operation === 'minus' && currentValue > 0) {
+                groupNumInput.value = currentValue - 1;
+            }
+        }
+
+        // Обработчики для кнопок изменения числа групп
+        document.getElementById('btn-plus-group').addEventListener('click', function() {
+            handleGroupNumChange('plus');
+        });
+
+        document.getElementById('btn-minus-group').addEventListener('click', function() {
+            handleGroupNumChange('minus');
+        });
     </script>
 </body>
 </html>
