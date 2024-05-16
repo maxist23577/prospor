@@ -20,12 +20,12 @@
             font-weight: 200;
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
+            text-align: center;
         }
 
         #create_event_main {
             width: 100%;
             padding: 20px;
-            text-align: center;
         }
 
         h1 {
@@ -78,6 +78,8 @@
             padding: 5px 5px;
             color: var(--tg-theme-button-color);
             background: var(--tg-theme-button-text-color);
+            width: calc(100% - 40px);
+            max-width: 400px;
         }
 
         button:hover {
@@ -169,8 +171,6 @@
             </div>
         </div>
 
-    
-
         <input type="text" placeholder="Число команд" id="in_event_teams_num">
         <button id="button_event_save">Создать</button>
     </form>
@@ -199,8 +199,8 @@
                 event_teams_type: event_teams_type,
                 event_teams_num: event_teams_num
             }
-            tg.sendData(JSON.stringify(data_event))
-            tg.close()
+            tg.sendData(JSON.stringify(data_event));
+            tg.close();
         });
 
         function sendData() {
