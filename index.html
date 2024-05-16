@@ -20,12 +20,18 @@
             font-weight: 200;
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
             text-align: center;
         }
 
         #create_event_main {
             width: 100%;
             padding: 20px;
+            text-align: center;
         }
 
         h1 {
@@ -89,16 +95,20 @@
         #form_create_event {
             display: none;
             text-align: center;
+            width: 100%;
+            padding: 0 20px;
         }
 
         input {
-            width: 90%;
+            width: 100%;
+            max-width: 400px;
             outline: none;
-            margin: 10px 5%;
+            margin: 10px auto;
             padding: 15px 10px;
             font-size: 14px;
             border: 2px solid silver;
             border-radius: 5px;
+            display: block;
         }
 
         input:focus {
