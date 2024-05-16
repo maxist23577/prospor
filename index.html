@@ -173,7 +173,11 @@
         }
 
         .group-container {
+            display: flex;
+            flex-direction: column; /* Отображение элементов в столбик */
+            align-items: center; /* Выравнивание по центру */
             margin-bottom: 10px;
+            margin: 0 20px;
         }
 
         .input-group {
@@ -274,22 +278,24 @@
             </div>
         </div>
 
-        <div class="input-container">
+        <div>
             <h3>Число команд/групп</h3>
-            <div class="group-container">
-                <label for="team-num">Команды</label>
-                <div class="input-group">
-                    <button type="button" id="btn-minus">-</button>
-                    <input type="text" id="team-num" value="0">
-                    <button type="button" id="btn-plus">+</button>
+            <div class="input-container">
+                <div class="group-container">
+                    <label for="group-num">Команды</label>
+                    <div class="input-group">
+                        <button type="button" id="btn-minus">-</button>
+                        <input type="text" id="team-num" value="0">
+                        <button type="button" id="btn-plus">+</button>
+                    </div>
                 </div>
-            </div>
-            <div class="group-container hidden" id="group-container">
-                <label for="group-num">Группы</label>
-                <div class="input-group">
-                    <button type="button" id="btn-minus-group">-</button>
-                    <input type="text" id="group-num" value="0">
-                    <button type="button" id="btn-plus-group">+</button>
+                <div class="group-container hidden" id="group-container">
+                    <label for="group-num">Группы</label>
+                    <div class="input-group">
+                        <button type="button" id="btn-minus-group">-</button>
+                        <input type="text" id="group-num" value="0">
+                        <button type="button" id="btn-plus-group">+</button>
+                    </div>
                 </div>
             </div>
         </div>
