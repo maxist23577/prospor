@@ -35,14 +35,17 @@
         }
 
         h1 {
-            margin-top: 50px;
-            margin-bottom: 10px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        color: #008000; /* Насыщенный зелёный цвет */
+        white-space: nowrap; /* h1 в одну строку */
         }
 
         h3 {
             text-align: center;
             margin-top: 20px;
             margin-bottom: 10px;
+            color: #008000; /* Насыщенный зелёный цвет */
         }
 
         .radio-group {
@@ -51,7 +54,20 @@
             gap: 20px;
             flex-wrap: wrap;
             margin-bottom: 20px;
+            position: relative; /* Необходимо для псевдоэлемента */
         }
+
+        .radio-group::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px; /* Тонкая линия */
+            background-color: #ddd; /* Цвет линии */
+            bottom: -10px; /* Расположение под блоком */
+            left: 0;
+            right: 0;
+        }
+
         .radio-item {
             display: flex;
             flex-direction: column;
@@ -131,7 +147,7 @@
         <button id="button_create_event">Создать новое</button>
     </div>
     <form id="form_create_event">
-        <h1>Основные параметры события</h1>
+        <h1>Параметры события</h1>
         <div>
             <h3>Название события</h3>
             <input type="text" placeholder="Название события" id="in_event_name">
@@ -150,10 +166,6 @@
                 <div class="radio-item">
                     <label for="sport-basketball">Баскетбол</label>
                     <input type="radio" name="event_sport" value="Баскетбол" id="sport-basketball">
-                </div>
-                <div class="radio-item">
-                    <label for="sport-volleyball">Волейбол</label>
-                    <input type="radio" name="event_sport" value="Волейбол" id="sport-volleyball">
                 </div>
             </div>
         </div>
