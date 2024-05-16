@@ -65,7 +65,7 @@
 
         .radio-group {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
             margin-bottom: 20px;
@@ -153,9 +153,12 @@
         }
 
         .input-container {
-        margin-top: 20px;
-        text-align: center;
-        position: relative; /* Необходимо для псевдоэлемента */
+            display: flex;
+            justify-content: center; /* Распределение пространства между элементами */
+            margin-top: 20px;
+            text-align: center;
+            align-items: center; /* Выравнивание по вертикали */
+            position: relative; /* Необходимо для псевдоэлемента */
         }
 
         .input-container::after {
@@ -170,37 +173,39 @@
         }
 
         .group-container {
-        margin-bottom: 10px;
+            margin-bottom: 10px;
         }
 
         .input-group {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .input-group input[type="text"] {
-        width: 60px;
-        text-align: center;
+            width: 60px;
+            text-align: center;
         }
 
         .input-group button {
-        width: 30px;
-        height: 30px;
-        margin: 0 5px;
-        font-size: 18px;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin: 0 10px; /* Уменьшение отступов между кнопками */
+            font-size: 24px; /* Увеличение размера шрифта */
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.1s ease; /* Уменьшение времени перехода */
+            line-height: 10px; /* Центрирование текста по вертикали */
         }
 
         .input-group button:hover {
-        background-color: #199415;
+            background-color: #199415;
         }
 
         .hidden {
-        display: none;
+            display: none;
         }
 
     </style>
