@@ -33,6 +33,27 @@
             margin-bottom: 10px;
         }
 
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .radio-group label {
+            display: block;
+            text-align: center;
+        }
+        .radio-group input {
+            display: block;
+            margin: 0 auto;
+        }
+
         img {
             width: 70px;
             margin: 30px auto;
@@ -85,15 +106,67 @@
 <body>
     <div id="create_event_main">
         <h1>Создание события</h1>
-        <img src="balls-sports_5540420.png">
+        <img src="\img\balls-sports_5540420.png">
         <p>Привет. А давай-ка, дружище, создадим что-то интересное!</p>
         <button id="button_create_event">Создать новое</button>
     </div>
     <form id="form_create_event">
+        <h1>Основные параметры события</h1>
         <input type="text" placeholder="Название события" id="in_event_name">
-        <input type="text" placeholder="Вид спорта" id="in_event_sport">
-        <input type="text" placeholder="Тип события" id="in_event_type">
-        <input type="text" placeholder="Тип команд" id="in_event_teams_type">
+        <div>
+            <h3>Вид спорта</h3>
+            <div class="radio-group">
+                <label>
+                    Футбол
+                    <input type="radio" name="event_sport" value="Футбол">
+                </label>
+                <label>
+                    Хоккей
+                    <input type="radio" name="event_sport" value="Хоккей">
+                </label>
+                <label>
+                    Баскетбол
+                    <input type="radio" name="event_sport" value="Баскетбол">
+                </label>
+                <label>
+                    Волейбол
+                    <input type="radio" name="event_sport" value="Волейбол">
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <h3>Тип события</h3>
+            <div class="radio-group">
+                <label>
+                    Матчи
+                    <input type="radio" name="event_type" value="Матчи">
+                </label>
+                <label>
+                    Кубок
+                    <input type="radio" name="event_type" value="Кубок">
+                </label>
+                <label>
+                    Чемпионат
+                    <input type="radio" name="event_type" value="Чемпионат">
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <h3>Тип команд</h3>
+            <div class="radio-group">
+                <label>
+                    Сборные
+                    <input type="radio" name="event_teams_type" value="Сборные">
+                </label>
+                <label>
+                    Клубы
+                    <input type="radio" name="event_teams_type" value="Клубы">
+                </label>
+            </div>
+        </div>
+
         <input type="text" placeholder="Число команд" id="in_event_teams_num">
         <button id="button_event_save">Создать</button>
     </form>
@@ -110,9 +183,9 @@
 
         save_event.addEventListener("click", () => {
             let event_name = document.getElementById("in_event_name").value;
-            let event_sport = document.getElementById("in_event_sport").value;
-            let event_type = document.getElementById("in_event_type").value;
-            let event_teams_type = document.getElementById("in_event_teams_type").value;
+            let event_sport = document.querySelector('input[name="event_sport"]:checked')?.value;
+            let event_type = document.querySelector('input[name="event_type"]:checked')?.value;
+            let event_teams_type = document.querySelector('input[name="event_teams_type"]:checked')?.value;
             let event_teams_num = document.getElementById("in_event_teams_num").value;
         
             let data_event = {
