@@ -47,7 +47,7 @@
 
         .radio-group {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             gap: 20px;
             flex-wrap: wrap;
             margin-bottom: 20px;
@@ -57,6 +57,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            min-width: 100px; /* минимальная ширина */
         }
         .radio-item label {
             margin-bottom: 5px;
@@ -130,12 +131,11 @@
         <button id="button_create_event">Создать новое</button>
     </div>
     <form id="form_create_event">
-        <h1>Параметры события</h1>
+        <h1>Основные параметры события</h1>
         <div>
             <h3>Название события</h3>
             <input type="text" placeholder="Название события" id="in_event_name">
         </div>
-
         <div>
             <h3>Вид спорта</h3>
             <div class="radio-group">
@@ -243,6 +243,7 @@
     </script>
 </body>
 </html>
+
 
 
 
