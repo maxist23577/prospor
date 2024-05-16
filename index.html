@@ -44,13 +44,13 @@
             gap: 30px;
             margin-bottom: 20px;
         }
-        .radio-group label {
-            text-align: center;
+        .radio-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
-        .radio-group input {
+        .radio-item input {
             margin-top: 5px;
         }
 
@@ -116,54 +116,54 @@
         <div>
             <h3>Вид спорта</h3>
             <div class="radio-group">
-                <label>
-                    Футбол
-                    <input type="radio" name="event_sport" value="Футбол">
-                </label>
-                <label>
-                    Хоккей
-                    <input type="radio" name="event_sport" value="Хоккей">
-                </label>
-                <label>
-                    Баскетбол
-                    <input type="radio" name="event_sport" value="Баскетбол">
-                </label>
-                <label>
-                    Волейбол
-                    <input type="radio" name="event_sport" value="Волейбол">
-                </label>
+                <div class="radio-item">
+                    <label for="sport-football">Футбол</label>
+                    <input type="radio" name="event_sport" value="Футбол" id="sport-football">
+                </div>
+                <div class="radio-item">
+                    <label for="sport-hockey">Хоккей</label>
+                    <input type="radio" name="event_sport" value="Хоккей" id="sport-hockey">
+                </div>
+                <div class="radio-item">
+                    <label for="sport-basketball">Баскетбол</label>
+                    <input type="radio" name="event_sport" value="Баскетбол" id="sport-basketball">
+                </div>
+                <div class="radio-item">
+                    <label for="sport-volleyball">Волейбол</label>
+                    <input type="radio" name="event_sport" value="Волейбол" id="sport-volleyball">
+                </div>
             </div>
         </div>
 
         <div>
             <h3>Тип события</h3>
             <div class="radio-group">
-                <label>
-                    Матчи
-                    <input type="radio" name="event_type" value="Матчи">
-                </label>
-                <label>
-                    Кубок
-                    <input type="radio" name="event_type" value="Кубок">
-                </label>
-                <label>
-                    Чемпионат
-                    <input type="radio" name="event_type" value="Чемпионат">
-                </label>
+                <div class="radio-item">
+                    <label for="type-match">Матчи</label>
+                    <input type="radio" name="event_type" value="Матчи" id="type-match">
+                </div>
+                <div class="radio-item">
+                    <label for="type-cup">Кубок</label>
+                    <input type="radio" name="event_type" value="Кубок" id="type-cup">
+                </div>
+                <div class="radio-item">
+                    <label for="type-championship">Чемпионат</label>
+                    <input type="radio" name="event_type" value="Чемпионат" id="type-championship">
+                </div>
             </div>
         </div>
 
         <div>
             <h3>Тип команд</h3>
             <div class="radio-group">
-                <label>
-                    Сборные
-                    <input type="radio" name="event_teams_type" value="Сборные">
-                </label>
-                <label>
-                    Клубы
-                    <input type="radio" name="event_teams_type" value="Клубы">
-                </label>
+                <div class="radio-item">
+                    <label for="teams-national">Сборные</label>
+                    <input type="radio" name="event_teams_type" value="Сборные" id="teams-national">
+                </div>
+                <div class="radio-item">
+                    <label for="teams-clubs">Клубы</label>
+                    <input type="radio" name="event_teams_type" value="Клубы" id="teams-clubs">
+                </div>
             </div>
         </div>
     
