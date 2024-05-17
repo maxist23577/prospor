@@ -402,7 +402,7 @@
         // Функция для обработки изменений типа события
         function handleEventTypeChange(eventType) {
             const groupContainer = document.getElementById('group-container');
-            if (eventType === 'Чемпионат') {
+            if (eventType === 'Championship') {
                 groupContainer.classList.remove('hidden');
             } else {
                 groupContainer.classList.add('hidden');
@@ -460,9 +460,9 @@
         elem.addEventListener('change', function(event) {
             const playoffScheme = document.getElementById('playoff-scheme');
             const groupContainer = document.getElementById('group-container');
-            if (this.value === 'Кубок' || this.value === 'Чемпионат') {
+            if (this.value === 'Cup' || this.value === 'Championship') {
                 playoffScheme.classList.remove('hidden');
-                if (this.value === 'Чемпионат') {
+                if (this.value === 'Championship') {
                     groupContainer.classList.remove('hidden');
                 } else {
                     groupContainer.classList.add('hidden');
