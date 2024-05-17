@@ -184,11 +184,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            
         }
 
         .input-group input[type="text"] {
             width: 60px;
             text-align: center;
+            font-size: 25px;
         }
 
         .input-group button {
@@ -196,16 +198,47 @@
             width: 40px;
             height: 40px;
             margin: 0 10px; /* Уменьшение отступов между кнопками */
-            font-size: 24px; /* Увеличение размера шрифта */
+            font-size: 40px; /* Увеличение размера шрифта */
             border: none;
             border-radius: 50%;
             cursor: pointer;
             transition: background-color 0.1s ease; /* Уменьшение времени перехода */
-            line-height: 10px; /* Центрирование текста по вертикали */
+            background-color: white; /* Исходный цвет фона */
         }
 
-        .input-group button:hover {
-            background-color: #199415;
+        /* Стили для плюсовой кнопки */
+        .btn-plus {
+            background-color: white; /* Исходный цвет фона */
+            line-height: 10px;
+        }
+
+        .btn-plus:hover {
+            background-color: #61c961; /* Цвет фона при наведении */
+        }
+
+        .btn-plus:active {
+            background-color: #07a701; /* Ярко зелёный цвет фона при нажатии */
+        }
+
+        /* Стили для минусовой кнопки */
+        .btn-minus {
+            background-color: white; /* Исходный цвет фона */
+        }
+
+        .btn-minus:hover {
+            background-color: #d4543d; /* Красный цвет фона при наведении */
+        }
+
+        .btn-minus:active {
+            background-color: #d13007; /* Ярко-красный цвет фона при нажатии */
+        }
+
+        /* Центрирование содержимого */
+        .input-group button span {
+            display: block;
+            line-height: 1; /* Обеспечивает одинаковую высоту строки для символов */
+            position: relative; /* Для точного позиционирования */
+            top: -8px; /* Подстройка вертикального позиционирования, если необходимо */
         }
 
         .hidden {
@@ -284,20 +317,30 @@
                 <div class="group-container">
                     <label for="group-num">Команды</label>
                     <div class="input-group">
-                        <button type="button" id="btn-minus">-</button>
+                        <button type="button" class="btn-minus" id="btn-minus"><span>-</span></button>
                         <input type="text" id="team-num" value="0">
-                        <button type="button" id="btn-plus">+</button>
+                        <button type="button" class="btn-plus" id="btn-plus">+</button>
                     </div>
                 </div>
                 <div class="group-container hidden" id="group-container">
                     <label for="group-num">Группы</label>
                     <div class="input-group">
-                        <button type="button" id="btn-minus-group">-</button>
+                        <button type="button" class="btn-minus" id="btn-minus-group"><span>-</span></button>
                         <input type="text" id="group-num" value="0">
-                        <button type="button" id="btn-plus-group">+</button>
+                        <button type="button" class="btn-plus" id="btn-plus-group">+</button>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="text-group hidden" id="playoff-scheme">
+            <h3>Схема плей-офф</h3>
+            <input type="text" placeholder="шифр-схема стадии плей-офф" id="in_playoff_scheme">
+        </div>
+
+        <div class="text-group">
+            <h3>Логотип события</h3>
+            <input type="text" placeholder="ссылка на логотип события" id="in_event_logo">
         </div>
 
         <button id="button_event_save">Создать</button>
@@ -316,17 +359,23 @@
 
         save_event.addEventListener("click", () => {
             let event_name = document.getElementById("in_event_name").value;
+            let event_logo = document.getElementById("in_event_logo").value;
             let event_sport = document.querySelector('input[name="event_sport"]:checked')?.value;
             let event_type = document.querySelector('input[name="event_type"]:checked')?.value;
             let event_teams_type = document.querySelector('input[name="event_teams_type"]:checked')?.value;
-            let event_teams_num = document.getElementById("in_event_teams_num").value;
-        
+            let event_teams_num = document.getElementById("team-num").value;
+            let event_groups_num = document.getElementById("group-num").value;
+            let playoff_scheme = document.getElementById("in_playoff_scheme").value;
+
             let data_event = {
                 event_name: event_name,
                 event_sport: event_sport,
                 event_type: event_type,
                 event_teams_type: event_teams_type,
-                event_teams_num: event_teams_num
+                event_teams_num: event_teams_num,
+                event_groups_num: event_groups_num,
+                playoff_scheme: playoff_scheme,
+                event_logo: event_logo,
             }
             tg.sendData(JSON.stringify(data_event));
             tg.close();
@@ -407,6 +456,24 @@
         document.getElementById('btn-minus-group').addEventListener('click', function() {
             handleGroupNumChange('minus');
         });
+
+        document.querySelectorAll('input[name="event_type"]').forEach((elem) => {
+        elem.addEventListener('change', function(event) {
+            const playoffScheme = document.getElementById('playoff-scheme');
+            const groupContainer = document.getElementById('group-container');
+            if (this.value === 'Кубок' || this.value === 'Чемпионат') {
+                playoffScheme.classList.remove('hidden');
+                if (this.value === 'Чемпионат') {
+                    groupContainer.classList.remove('hidden');
+                } else {
+                    groupContainer.classList.add('hidden');
+                }
+            } else {
+                playoffScheme.classList.add('hidden');
+                groupContainer.classList.add('hidden');
+            }
+        });
+});
     </script>
 </body>
 </html>
