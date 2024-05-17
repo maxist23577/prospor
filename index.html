@@ -28,10 +28,14 @@
             text-align: center;
         }
 
-        #create_event_main {
+        #create_event_main, #form_create_event, #form_confirm_event {
             width: 100%;
             padding: 20px;
             text-align: center;
+        }
+
+        #form_confirm_event {
+            display: none;
         }
 
         h1 {
@@ -347,17 +351,42 @@
             <input type="text" placeholder="ссылка на логотип события" id="in_event_logo">
         </div>
 
-        <button id="button_event_save">Создать</button>
+        <button type="button" id="button_confirm_event">Создать</button>
     </form>
+
+    <form id="form_confirm_event">
+        <div id="confirmation_screen">
+            <h1>Подтверждение</h1>
+            <p>Вы уверены, что хотите создать это событие?</p>
+            <button id="button_event_save">Подтвердить</button>
+            <button type="button" id="back_to_create_event_button">Вернуться назад</button>
+        </div>
+    </form>
+
+
+
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
         let create_event = document.getElementById("button_create_event");
+        let confirm_event = document.getElementById("button_confirm_event");
+        let back_to_create_event = document.getElementById("back_to_create_event_button");
         let save_event = document.getElementById("button_event_save");
+
         tg.expand();
         create_event.addEventListener("click", () => {
             document.getElementById("create_event_main").style.display = "none";
+            document.getElementById("form_create_event").style.display = "block";
+        });
+
+        confirm_event.addEventListener("click", () => {
+            document.getElementById("form_create_event").style.display = "none";
+            document.getElementById("form_confirm_event").style.display = "block";
+        });
+
+         back_to_create_event.addEventListener("click", () => {
+            document.getElementById("form_confirm_event").style.display = "none";
             document.getElementById("form_create_event").style.display = "block";
         });
 
@@ -477,12 +506,10 @@
                 groupContainer.classList.add('hidden');
             }
         });
-});
+    });
     </script>
 </body>
 </html>
-
-
 
 
 
